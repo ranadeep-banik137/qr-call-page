@@ -3,35 +3,149 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact Me</title>
+  <title>Reach Me</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    body {
-      font-family: sans-serif;
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .bg-video {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(255, 255, 255, 0.12);
+      padding: 30px 25px;
+      border-radius: 20px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      max-width: 400px;
+      width: 90%;
       text-align: center;
-      padding-top: 100px;
-      background: #f0f0f0;
     }
+
     h1 {
-      font-size: 24px;
-    }
-    .button {
-      display: inline-block;
-      padding: 15px 25px;
-      margin-top: 20px;
-      font-size: 18px;
       color: white;
-      background-color: #007BFF;
-      border-radius: 8px;
-      text-decoration: none;
+      font-size: 1.8rem;
+      margin-bottom: 20px;
     }
-    .button:hover {
-      background-color: #0056b3;
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      margin: 10px 0;
+      padding: 14px;
+      font-size: 1rem;
+      border-radius: 40px;
+      background-color: rgba(0,0,0,0.3);
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: rgba(0,0,0,0.6);
+    }
+
+    .btn svg {
+      height: 20px;
+      width: 20px;
+      fill: white;
+    }
+
+    p {
+      margin-top: 20px;
+      color: #eaeaea;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 1.5rem;
+      }
     }
   </style>
 </head>
 <body>
-  <h1>Ranadeep this side...</h1>
-  <p>Tap below to call me directly</p>
-  <a class="button" href="tel:+919774134178">📞 Call Now</a>
+
+  <!-- Background Video -->
+  <video class="bg-video" autoplay muted loop>
+    <source src="https://cdn.pixabay.com/video/2020/11/07/55032-490977292_large.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+
+  <div class="container">
+    <h1>Need to Reach Me?</h1>
+    <button class="btn" onclick="callMe()">📞 Call Me</button>
+    <button class="btn" onclick="whatsappMe()">
+	  <i class="fab fa-whatsapp" style="margin-right: 8px;"></i>
+	  <span>Message Me on WhatsApp</span>
+	</button>
+    <p>Your location (if shared) will be sent in the WhatsApp message.</p>
+  </div>
+
+  <script>
+    const encodedPhone = "NzM3ODMzMjgwMg==";
+    const messageBase = "Hi, I scanned your QR and would like to talk to you.";
+
+    function decodePhone(encoded) {
+      return atob(encoded);
+    }
+
+    function callMe() {
+      const phone = decodePhone(encodedPhone);
+      const telLink = `tel:+${phone}`;
+      window.location.href = telLink;
+    }
+
+    function whatsappMe() {
+      let message = messageBase;
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (pos) => {
+            const lat = pos.coords.latitude.toFixed(5);
+            const lon = pos.coords.longitude.toFixed(5);
+            const mapLink = `https://www.google.com/maps?q=${lat},${lon}`;
+            message += `\n\nMy location:\n${mapLink}`;
+            openWA(message);
+          },
+          () => openWA(message) // if location fails
+        );
+      } else {
+        openWA(message);
+      }
+    }
+
+    function openWA(msg) {
+      const phone = decodePhone(encodedPhone);
+      const encoded = encodeURIComponent(msg);
+      const waURL = `https://wa.me/${phone}?text=${encoded}`;
+      window.open(waURL, "_blank");
+    }
+  </script>
+
 </body>
 </html>
