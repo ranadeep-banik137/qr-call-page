@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reach Me</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ranadeep | Contact</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
     * {
@@ -12,105 +13,240 @@
       box-sizing: border-box;
     }
 
-    body, html {
+    html, body {
       height: 100%;
-      font-family: 'Segoe UI', sans-serif;
+      font-family: 'Inter', sans-serif;
+      background: #0b0f17;
+      color: #fff;
       overflow: hidden;
     }
 
     .bg-video {
       position: fixed;
-      right: 0;
-      bottom: 0;
-      min-width: 100%;
-      min-height: 100%;
-      z-index: -1;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       object-fit: cover;
+      z-index: 3;
+      opacity: 0.6;
+    }
+
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.65);
+      backdrop-filter: blur(2px);
+      z-index: 2;
     }
 
     .container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: rgba(255, 255, 255, 0.12);
-      padding: 30px 25px;
-      border-radius: 20px;
-      backdrop-filter: blur(12px);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      max-width: 400px;
-      width: 90%;
-      text-align: center;
+      position: relative;
+      z-index: 4;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
 
-    h1 {
-      color: white;
-      font-size: 1.8rem;
-      margin-bottom: 20px;
+    .card {
+      background: rgba(15, 15, 15, 0.65);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      padding: 48px 32px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 50px rgba(0, 0, 0, 0.8);
+      max-width: 500px;
+      width: 100%;
+      text-align: center;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .header {
+      font-size: 1.4rem;
+      color: #e0e0e0;
+      margin-bottom: 24px;
+      letter-spacing: 0.5px;
     }
 
     .btn {
+      width: 85%;
+      padding: 14px;
+      margin: 14px auto;
+      font-size: 1rem;
+      border-radius: 12px;
+      border: none;
+      background: #1c1f24;
+      color: #eee;
+      font-weight: 600;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 10px;
-      width: 100%;
-      margin: 10px 0;
-      padding: 14px;
-      font-size: 1rem;
-      border-radius: 40px;
-      background-color: rgba(0,0,0,0.3);
-      color: #fff;
-      border: none;
+      transition: 0.3s ease;
       cursor: pointer;
-      transition: all 0.3s ease;
+      box-shadow: inset 0 0 0 1px #2a2d34;
     }
 
     .btn:hover {
-      background-color: rgba(0,0,0,0.6);
+      background-color: #2b2f36;
     }
 
-    .btn svg {
-      height: 20px;
-      width: 20px;
-      fill: white;
-    }
-
-    p {
+    .note {
+      font-size: 0.8rem;
+      color: #888;
       margin-top: 20px;
-      color: #eaeaea;
-      font-size: 0.9rem;
     }
 
-    @media (max-width: 500px) {
-      h1 {
-        font-size: 1.5rem;
+    /* Owner Modal */
+    .owner-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(4px);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .owner-modal.active {
+      display: flex;
+    }
+
+    .owner-card {
+      background: #121416;
+      border-radius: 20px;
+      padding: 36px 28px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 14px;
+      right: 18px;
+      font-size: 1.3rem;
+      color: #ccc;
+      background: none;
+      border: none;
+      cursor: pointer;
+    }
+
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+      border: 2px solid #333;
+    }
+
+    .owner-card h1 {
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .info-table {
+      margin-top: 20px;
+      width: 100%;
+      font-size: 0.9rem;
+      text-align: left;
+      color: #aaa;
+    }
+
+    .info-table td {
+      padding: 8px 4px;
+      vertical-align: top;
+    }
+
+    .info-table td.label {
+      font-weight: 600;
+      width: 40%;
+      color: #ddd;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        align-items: center;
+        padding-top: 0;
+      }
+
+      .card {
+        width: 100%;
+        max-width: none;
+        padding: 36px 20px;
+        border-radius: 12px;
+        height: auto;
+      }
+
+      .owner-card {
+        max-width: 90%;
+        padding: 32px 18px;
+      }
+
+      .btn {
+        width: 100%;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Background Video -->
-  <video class="bg-video" autoplay muted loop>
-    <source src="https://cdn.pixabay.com/video/2020/11/07/55032-490977292_large.mp4" type="video/mp4">
-    Your browser does not support the video tag.
+  <video class="bg-video" autoplay muted loop playsinline>
+    <source src="https://cdn.pixabay.com/video/2022/05/02/115668-705553399_large.mp4" type="video/mp4" />
   </video>
+  <div class="overlay"></div>
 
   <div class="container">
-    <h1>Need to Reach Me?</h1>
-    <button class="btn" onclick="callMe()">📞 Call Me</button>
-    <button class="btn" onclick="whatsappMe()">
-	  <i class="fab fa-whatsapp" style="margin-right: 8px;"></i>
-	  <span>Message Me on WhatsApp</span>
-	</button>
-    <p>Your location (if shared) will be sent in the WhatsApp message.</p>
+    <div class="card">
+      <div class="header">Want to connect?</div>
+
+      <button class="btn" onclick="openOwnerCard()">
+        <i class="fas fa-user"></i> Owner Details
+      </button>
+      <button class="btn" onclick="callMe()">
+        <i class="fas fa-phone"></i> Call Me
+      </button>
+      <button class="btn" onclick="whatsappMe()">
+        <i class="fab fa-whatsapp"></i> WhatsApp Me
+      </button>
+
+      <div class="note">Location will be shared via WhatsApp (if allowed).</div>
+    </div>
+  </div>
+
+  <div class="owner-modal" id="ownerModal">
+    <div class="owner-card">
+      <button class="close-btn" onclick="closeOwnerCard()">&times;</button>
+      <img src="https://media.licdn.com/dms/image/v2/C4D03AQF_aRH-ovJl6w/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1656588367653?e=1755129600&v=beta&t=2JKSke5WK6Qx2Zb8Zd9tiZVqvLp1c3kltultFbv1tJc" alt="Ranadeep" class="profile-pic">
+      <h2>Owner Info Card</h2>
+      <table class="info-table">
+	    <tr><td class="label">Name</td><td>Ranadeep Banik</td></tr>
+        <tr><td class="label">Car</td><td>Tata Nexon</td></tr>
+        <tr><td class="label">Color</td><td>Daytona Grey</td></tr>
+        <tr><td class="label">Number Plate</td><td>TR01CE0669</td></tr>
+        <tr><td class="label">Identification</td><td>No scratches</td></tr>
+        <tr><td class="label">CH No</td><td>N/A</td></tr>
+      </table>
+    </div>
   </div>
 
   <script>
     const encodedPhone = "NzM3ODMzMjgwMg==";
     const messageBase = "Hi, I scanned your QR and would like to talk to you.";
-	const countrycode = "+91";
+    const countrycode = "+91";
 
     function decodePhone(encoded) {
       return atob(encoded);
@@ -118,8 +254,7 @@
 
     function callMe() {
       const phone = decodePhone(encodedPhone);
-      const telLink = `tel:${countrycode}${phone}`;
-      window.location.href = telLink;
+      window.location.href = `tel:${countrycode}${phone}`;
     }
 
     function whatsappMe() {
@@ -129,11 +264,10 @@
           (pos) => {
             const lat = pos.coords.latitude.toFixed(5);
             const lon = pos.coords.longitude.toFixed(5);
-            const mapLink = `https://www.google.com/maps?q=${lat},${lon}`;
-            message += `\n\nMy location:\n${mapLink}`;
+            message += `\n\nMy location:\nhttps://www.google.com/maps?q=${lat},${lon}`;
             openWA(message);
           },
-          () => openWA(message) // if location fails
+          () => openWA(message)
         );
       } else {
         openWA(message);
@@ -145,6 +279,14 @@
       const encoded = encodeURIComponent(msg);
       const waURL = `https://wa.me/${phone}?text=${encoded}`;
       window.open(waURL, "_blank");
+    }
+
+    function openOwnerCard() {
+      document.getElementById("ownerModal").classList.add("active");
+    }
+
+    function closeOwnerCard() {
+      document.getElementById("ownerModal").classList.remove("active");
     }
   </script>
 
