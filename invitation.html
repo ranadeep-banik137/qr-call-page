@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ridhanya's Rice Weaning Ceremony Invitation</title>
+
+<!-- Royal Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Great+Vibes&display=swap" rel="stylesheet">
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background: url("https://github.com/ranadeep-banik137/qr-call-page/blob/main/invitation_card_bg.jpeg") no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Cinzel', serif;
+    color: #d4af37;
+  }
+
+  .invitation-container {
+    background: rgba(10, 26, 79, 0.85); /* royal blue overlay for text contrast */
+    border: 3px double #d4af37;
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+    width: 90%;
+    max-width: 420px;
+  }
+
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.9rem;
+    margin-bottom: 30px;
+    text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+  }
+
+  .envelope {
+    position: relative;
+    display: inline-block;
+    width: 180px;
+    height: 120px;
+    background: linear-gradient(145deg, #d4af37, #b8860b);
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+
+  .envelope:hover {
+    transform: scale(1.05);
+  }
+
+  .flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 90px solid transparent;
+    border-right: 90px solid transparent;
+    border-bottom: 60px solid #b8860b;
+    transform: translateY(-1px);
+  }
+
+  .text {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+    color: #0a1a4f;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(255,255,255,0.6);
+  }
+
+  .location-btn {
+    display: inline-block;
+    margin-top: 35px;
+    padding: 10px 25px;
+    font-size: 1rem;
+    color: #0a1a4f;
+    background: linear-gradient(145deg, #d4af37, #b8860b);
+    border: none;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 0 15px rgba(212,175,55,0.5);
+    transition: all 0.3s ease;
+  }
+
+  .location-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(212,175,55,0.8);
+  }
+
+  .location-header {
+    margin-top: 40px;
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(212,175,55,0.8);
+  }
+
+  @media (max-width: 600px) {
+    .invitation-container {
+      padding: 25px;
+      max-width: 340px;
+    }
+    .envelope {
+      width: 150px;
+      height: 100px;
+    }
+    .flap {
+      border-left: 75px solid transparent;
+      border-right: 75px solid transparent;
+      border-bottom: 50px solid #b8860b;
+    }
+    .text {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+
+<body>
+  <div class="invitation-container">
+    <h1>Ridhanya's Rice Weaning Ceremony</h1>
+
+    <a href="https://vimeo.com/1131259427?fl=pl&fe=sh" target="_blank" style="text-decoration: none;">
+      <div class="envelope">
+        <div class="flap"></div>
+        <div class="text">Open Invitation</div>
+      </div>
+    </a>
+
+    <div class="location-header">Venue Location</div>
+    <a href="https://maps.app.goo.gl/4K5uzi1yp6ktkJB3A" target="_blank" class="location-btn">View on Google Maps</a>
+  </div>
+</body>
+</html>
