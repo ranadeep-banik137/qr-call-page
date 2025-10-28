@@ -1,8 +1,32 @@
-<iframe
-  src="https://player.vimeo.com/video/1131259427?autoplay=1&muted=1"
-  width="640"
-  height="360"
-  frameborder="0"
-  allow="autoplay; fullscreen; picture-in-picture"
-  allowfullscreen>
-</iframe>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Full-Screen Invitation Video</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background-color: black;
+      overflow: hidden;
+    }
+    iframe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <iframe
+    src="https://player.vimeo.com/video/1131259427?autoplay=1&muted=1"
+    allow="autoplay; fullscreen; picture-in-picture"
+    allowfullscreen>
+  </iframe>
+</body>
+</html>
