@@ -13,7 +13,8 @@
     margin: 0;
     padding: 0;
     height: 100vh;
-    background: url("https://raw.githubusercontent.com/ranadeep-banik137/qr-call-page/refs/heads/main/invitation_card_bg.jpeg") no-repeat center center/cover;
+    background: linear-gradient(rgba(10, 26, 79, 0.7), rgba(10, 26, 79, 0.7)), 
+                url("https://raw.githubusercontent.com/ranadeep-banik137/qr-call-page/refs/heads/main/invitation_card_bg.jpeg") no-repeat center center/cover;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -22,33 +23,38 @@
   }
 
   .invitation-container {
-    background: rgba(10, 26, 79, 0.85); /* royal blue overlay for text contrast */
+    background: rgba(10, 26, 79, 0.85);
     border: 3px double #d4af37;
     border-radius: 20px;
     padding: 40px;
     text-align: center;
-    box-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+    box-shadow: 0 0 35px rgba(212, 175, 55, 0.6);
     width: 90%;
     max-width: 420px;
+    position: relative;
   }
 
   h1 {
     font-family: 'Great Vibes', cursive;
-    font-size: 1.9rem;
-    margin-bottom: 30px;
-    text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+    font-size: 2rem;
+    margin-bottom: 35px;
+    text-shadow: 0 0 12px rgba(212,175,55,0.8);
   }
 
+  /* Royal Envelope */
   .envelope {
     position: relative;
-    display: inline-block;
-    width: 180px;
-    height: 120px;
-    background: linear-gradient(145deg, #d4af37, #b8860b);
-    border-radius: 6px;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.6);
+    width: 200px;
+    height: 130px;
+    margin: 0 auto;
+    background: linear-gradient(145deg, #caa944, #e5c65b, #c9a53c);
+    border: 2px solid #d4af37;
+    border-radius: 8px;
+    box-shadow: 0 0 25px rgba(212,175,55,0.5), inset 0 0 15px rgba(255,255,255,0.2);
+    overflow: hidden;
     cursor: pointer;
     transition: transform 0.3s ease;
+    perspective: 1000px;
   }
 
   .envelope:hover {
@@ -59,12 +65,17 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: 0;
-    height: 0;
-    border-left: 90px solid transparent;
-    border-right: 90px solid transparent;
-    border-bottom: 60px solid #b8860b;
-    transform: translateY(-1px);
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(160deg, #e8ca68, #b78e2d, #f5dc84);
+    clip-path: polygon(0 0, 100% 0, 50% 50%);
+    transform-origin: top;
+    transition: transform 1.2s cubic-bezier(0.77, 0.2, 0.05, 1.0);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  }
+
+  .flap.open {
+    transform: rotateX(160deg);
   }
 
   .text {
@@ -74,13 +85,37 @@
     text-align: center;
     color: #0a1a4f;
     font-weight: bold;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     text-shadow: 0 0 10px rgba(255,255,255,0.6);
+    letter-spacing: 0.5px;
+  }
+
+  .shine {
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(255,255,255,0.2), rgba(255,255,255,0.8), rgba(255,255,255,0.2));
+    transform: skewX(-20deg);
+    animation: shineMove 3s infinite ease-in-out;
+  }
+
+  @keyframes shineMove {
+    0% { left: -75%; }
+    50% { left: 125%; }
+    100% { left: 125%; }
+  }
+
+  .location-header {
+    margin-top: 50px;
+    font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(212,175,55,0.8);
   }
 
   .location-btn {
     display: inline-block;
-    margin-top: 35px;
+    margin-top: 10px;
     padding: 10px 25px;
     font-size: 1rem;
     color: #0a1a4f;
@@ -98,25 +133,14 @@
     box-shadow: 0 0 25px rgba(212,175,55,0.8);
   }
 
-  .location-header {
-    margin-top: 40px;
-    font-size: 1.2rem;
-    text-shadow: 0 0 10px rgba(212,175,55,0.8);
-  }
-
   @media (max-width: 600px) {
     .invitation-container {
       padding: 25px;
       max-width: 340px;
     }
     .envelope {
-      width: 150px;
+      width: 160px;
       height: 100px;
-    }
-    .flap {
-      border-left: 75px solid transparent;
-      border-right: 75px solid transparent;
-      border-bottom: 50px solid #b8860b;
     }
     .text {
       font-size: 1rem;
@@ -129,21 +153,28 @@
   <div class="invitation-container">
     <h1>Ridhanya's Rice Weaning Ceremony</h1>
 
-    <a href="https://ranadeep-banik137.github.io/qr-call-page/autoplay_invite.html" target="_blank" style="text-decoration: none;">
-      <div class="envelope">
-        <div class="flap"></div>
-        <div class="text">Open Invitation</div>
-      </div>
-    </a>
+    <div class="envelope" id="envelope">
+      <div class="flap" id="flap"></div>
+      <div class="shine"></div>
+      <div class="text">Open Invitation</div>
+    </div>
 
     <div class="location-header">Venue Location</div>
     <a href="https://maps.app.goo.gl/4K5uzi1yp6ktkJB3A" target="_blank" class="location-btn">View on Google Maps</a>
   </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const flap = document.getElementById('flap');
+
+    envelope.addEventListener('click', () => {
+      flap.classList.add('open');
+
+      // Redirect after animation finishes
+      setTimeout(() => {
+        window.open("https://ranadeep-banik137.github.io/qr-call-page/autoplay_invite.html", "_blank");
+      }, 1300);
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
